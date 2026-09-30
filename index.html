@@ -1,0 +1,119 @@
+<meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Reorganizador de Amigo Secreto</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- PANTALLA 1: REGISTRO SECRETOS -->
+
+  <div id="pantalla-registro">
+
+    <h2>Amigo Secreto (Reorganización)</h2>
+
+    <p class="subtitle">
+
+      Selecciona tu nombre en la lista y escribe únicamente a la persona
+
+      que tenías asignada originalmente.
+
+    </p>
+
+    <label for="select-dador">1. ¿Quién eres tú?:</label>
+
+    <select id="select-dador">
+
+      <option value="">-- Selecciona tu nombre --</option>
+
+    </select>
+
+    <label for="input-receptor">2. ¿A quién tenías asignado/a?:</label>
+
+    <input
+
+      type="password"
+
+      id="input-receptor"
+
+      placeholder="Escribe el nombre del amigo secreto"
+
+      autocomplete="off"
+
+    >
+
+    <button id="btn-guardar">
+
+      Guardar Mi Amigo Secreto
+
+    </button>
+
+    <div class="status-box"><!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+
+
+      <strong>Progreso:</strong>
+
+      <span id="contador">0</span> de 11 personas registradas.
+
+    </div>
+
+    <!-- Solo visible para Henry cuando todos terminen -->
+
+    <button
+
+      id="btn-analizar"
+
+      class="btn-admin hidden"
+
+    >
+
+      Henry: Generar Análisis y Reasignación
+
+    </button>
+
+  </div>
+
+  <!-- PANTALLA DE ÉXITO INDIVIDUAL -->
+
+  <div id="pantalla-exito" class="hidden">
+
+    <h2>¡Datos Guardados!</h2>
+
+    <p class="subtitle">Tu respuesta ha sido registrada en secreto. Ya puedes cerrar esta ventana.</p>
+
+  </div>
+
+  <!-- PANTALLA 2: RESULTADO FINAL -->
+
+  <div id="pantalla-resultado" class="hidden">
+
+    <h2>Resultado de la Reorganización</h2>
+
+    <div class="alert-box" id="resumen-cambio"></div>
+
+    <h2 class="titulo-lista">Lista Final de Regalos</h2>
+
+    <ul id="lista-final"></ul>
+
+    <button onclick="location.reload()" class="btn-cerrar">Cerrar</button>
+
+  </div>
+
+</div>
+
+<script type="module" src="js/script.js"></script>
+
+</body>
+
+</html>

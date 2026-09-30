@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  background-color: #f4f7f6;
+  color: #2c3e50;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  background: white;
+  max-width: 480px;
+  width: 100%;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #1a252f;
+  border-bottom: 2px solid #edf2f7;
+  padding-bottom: 8px;
+}
+
+p.subtitle {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 18px;
+}
+
+label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #34495e;
+  display: block;
+  margin: 14px 0 6px;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+}
+
+select:focus,
+input:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+button {
+  width: 100%;
+  background: #2b6cb0;
+  color: white;
+  font-weight: 700;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 18px;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #2c5282;
+}
+
+.btn-admin {
+  background: #dd6b20;
+}
+
+.btn-admin:hover {
+  background: #c05621;
+}
+
+.hidden {
+  display: none;
+}
+
+.status-box {
+  background: #ebf8ff;
+  border-left: 4px solid #3182ce;
+  padding: 12px;
+  font-size: 0.88rem;
+  margin-top: 18px;
+  border-radius: 4px;
+  color: #2b6cb0;
+}
+
+.alert-box {
+  background: #feebc8;
+  border-left: 4px solid #dd6b20;
+  padding: 12px;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  border-radius: 4px;
+  color: #7b341e;
+}
+
+ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+li {
+  padding: 10px 0;
+  border-bottom: 1px dashed #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.titulo-lista {
+  margin-top: 20px;
+}
+
+.btn-cerrar {
+  background: #718096;
+  margin-top: 20px;
+}
