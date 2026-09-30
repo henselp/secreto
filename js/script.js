@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// Credenciales extraídas de tu consola de Firebase
+// Configuración con tus credenciales de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAbcedXuzh0U8oIerDn8fftnPzbiKRQ7TQ",
   authDomain: "amigo-secreto-d8f27.firebaseapp.com",
@@ -33,19 +33,18 @@ onValue(asignacionesRef, (snapshot) => {
 
   cargarParticipantes();
 
-  // Cuando los 11 hayan respondido, se muestra el botón de análisis para Henry
-  if (registradosCount === PARTICIPANTES.length) {
+  // Muestra el botón de Henry cuando las 11 personas hayan registrado su respuesta
+  if (registradosCount >= PARTICIPANTES.length) {
     document.getElementById("btn-analizar").classList.remove("hidden");
   }
 });
 
-// Cargar lista filtrada en el select
+// Cargar lista filtrada en el select (solo muestra los que no han respondido)
 function cargarParticipantes() {
   const select = document.getElementById("select-dador");
   select.innerHTML = '-- Selecciona tu nombre --';
 
   PARTICIPANTES.forEach(nombre => {
-    // Solo mostrar los nombres que no hayan respondido aún
     if (!asignacionesGlobales[nombre]) {
       const opt = document.createElement("option");
       opt.value = nombre;
@@ -87,34 +86,33 @@ document.getElementById("btn-analizar").addEventListener("click", () => {
   let personaY = null;
   let personaX = null;
 
-  // 1. Identificar quién tenía a Alejandro
+  // 1. Identificar quién tenía a Alejandro (ignorando mayúsculas y espacios extra)
   for (let dador in asignacionesGlobales) {
-    if (asignacionesGlobales[dador].toLowerCase() === RETIRADO.toLowerCase()) {
+    if (asignacionesGlobales[dador].trim().toLowerCase() === RETIRADO.toLowerCase()) {
       personaY = dador;
       break;
     }
   }
 
-  // 2. Identificar a quién nadie mencionó
-  const receptoresGuardados = Object.values(asignacionesGlobales).map(r => r.toLowerCase());
+  // 2. Identificar a quién nadie mencionó en los registros
+  const receptoresGuardados = Object.values(asignacionesGlobales).map(r => r.trim().toLowerCase());
   for (let participante of PARTICIPANTES) {
-    if (!receptoresGuardados.includes(participante.toLowerCase())) {
+    if (!receptoresGuardados.includes(participante.trim().toLowerCase())) {
       personaX = participante;
       break;
     }
   }
 
-  if (!personaY) {
-    alert("No se encontró a nadie que haya ingresado a 'Alejandro'. Revisa los datos.");
+  if (!personaY || !personaX) {
+    alert("Error al analizar los datos. Verifica que los nombres registrados coincidan con la lista.");
     return;
   }
 
-  if (!personaX) {
-    alert("No se pudo detectar automáticamente a la persona que Alejandro tenía asignada.");
-    return;
-  }
+  // Aplicar la reasignación automática en memoria
+  asignacionesGlobales[personaY] = personaX;
 
-// Mostrar informe
-document.getElementById("resumen-cambio").innerHTML =
-  `**Reasignación Automática:**`;
+  // Mostrar el mensaje de resumen del cambio
+  document.getElementById("resumen-cambio").innerHTML =
+    `**Reasignación Automática:**`;
 });
+  
